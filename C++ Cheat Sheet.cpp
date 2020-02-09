@@ -22,11 +22,11 @@
 */
 /*********************** General Notes ***********************/
 /* Variable Initialization */
-	/*
-	Initialization = The object is given a known value at the point of definition.
+	type identifier{expression};
+	/* Initialization = The object is given a known value at the point of definition.
 	Assignment = The object is given a known value beyond the point of definition.
-	Uninitialized = A variable that hasn't been given a value (Usually through initialization or assignment). Using the value stored in an uninitialized variable will result in undefined behavior.
-	*/
+	Uninitialized = A variable that hasn't been given a value (Usually through initialization or assignment). Using the value stored in an uninitialized variable will result in undefined behavior. */
+	
 	/* Copy Initialization, inherited from the C language. This is the most basic way of initializing a variable. */
 	int var = 5;
 
