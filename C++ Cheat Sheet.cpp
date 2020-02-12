@@ -54,6 +54,16 @@
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 */
 /*********************** Function / Method Notes ***********************/
+/* main function
+	- Every program MUST have a main function!
+	- The main function MUST return a value of type int!
+	- The return value (status code) is retrieved by the operating system (and any other programs that called this program).
+	- return 0 means that the program ran normally/successfully.
+	- return a non-0 means that the program it encountered an error and could not complete as expected.
+	- Recommended to place the main function at bottom of which ever file it's located in.
+*/
+	int main()
+
 /* Preprocessor directive, it indicates that we would like to use the contents of the given library. */
 	#include <value>
 
