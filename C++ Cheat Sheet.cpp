@@ -45,7 +45,19 @@
 	int var{3.7}; /* Output ---> Compiler Error! Narrowing isn't allowed! */
 
 /* Functions */
-	return-type identifier()
+	type identifier(parameters){}
+
+/* Concatenation */
+	/* Strings can be concatenated without even putting anything in between */
+	"My " "Name" /* Output ---> "My Name", this can be used to split up very long strings to multiple lines */
+		/* Uses */
+		std::cout << "This is a really, really, really, really, really, really, really, "
+		"really long line\n"; /* Since the string is very long, we split it into 2 lines */
+
+/* Forward Declaration */
+	/* Since the ordering of the functions in C++ matters, we use forward declaration to let the compiler know that an identifier exists before it is actually defined. */
+	/* We can use forward declaration by using a system called "function prototype", example: */
+	type identifier(parameters); /* Function prototype includes: return type, identifier, parameters, and a semicolon. The body of the function isn't defined here! */
 /*
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
