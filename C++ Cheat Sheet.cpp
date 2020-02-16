@@ -25,9 +25,9 @@
 
 /* Variable Initialization */
 	type identifier{expression};
-	/* Initialization = The object is given a known value at the point of definition.
-	Assignment = The object is given a known value beyond the point of definition.
-	Uninitialized = A variable that hasn't been given a value (Usually through initialization or assignment). Using the value stored in an uninitialized variable will result in undefined behavior. */
+	/*  Initialization = The object is given a known value at the point of definition.
+		Assignment = The object is given a known value beyond the point of definition.
+		Uninitialized = A variable that hasn't been given a value (Usually through initialization or assignment). Using the value stored in an uninitialized variable will result in undefined behavior. */
 	
 	/* Copy Initialization, inherited from the C language. This is the most basic way of initializing a variable. */
 	int var = 5;
@@ -47,33 +47,33 @@
 /* Functions */
 	type identifier(parameters){}
 
-/* Concatenation */
-	/* Strings can be concatenated without even putting anything in between */
-	"My " "Name" /* Output ---> "My Name", this can be used to split up very long strings to multiple lines */
-		/* Uses */
+/* Concatenation
+	Strings can be concatenated without even putting anything in between, example: */
+	"My " "Name" /* Output ---> "My Name", this can be used to split up very long strings to multiple lines. */
+		/* Example: */
 		std::cout << "This is a really, really, really, really, really, really, really, "
-		"really long line\n"; /* Since the string is very long, we split it into 2 lines */
+		"really long line\n"; /* Since the string is very long, we split it into 2 lines. */
 
-/* Forward Declaration */
-	/* Since the ordering of the functions in C++ matters, we use forward declaration to let the compiler know that an identifier exists before it is actually defined. */
-	/* We can use forward declaration by using a system called "function prototype", example: */
+/* Forward Declaration
+	 Since the ordering of the functions in C++ matters, we use forward declaration to let the compiler know that an identifier exists before it is actually defined.
+	 We can use forward declaration by using a system called "function prototype", example: */
 	type identifier(parameters); /* Function prototype includes: return type, identifier, parameters, and a semicolon. The body of the function isn't defined here! */
-/*
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-*/
-/*********************** Function / Method Notes ***********************/
-/* main function
+
+/* Namespaces
+	Any names not defined inside a function, class or a namespace is automatically placed inside the global namespace (aka global scope). */
+	using namespace name; /* Basically tells the compiler that if it comes across a identifier without a prefix, it should check to see if it's defined locally or in the defined namespace. */
+
+/* Scope Resolution Operator  ::
+	The identifier to the left of the :: symbol identifies the namespace that the name to the right of the :: symbol is contained within. */
+	namespace::name
+
+/* main Function
 	- Every program MUST have a main function!
 	- The main function MUST return a value of type int!
 	- The return value (status code) is retrieved by the operating system (and any other programs that called this program).
 	- return 0 means that the program ran normally/successfully.
 	- return a non-0 means that the program it encountered an error and could not complete as expected.
-	- Recommended to place the main function at bottom of which ever file it's located in.
-*/
+	- Recommended to place the main function at bottom of which ever file it's located in. */
 	int main()
 
 /* Preprocessor directive, it indicates that we would like to use the contents of the given library. */
