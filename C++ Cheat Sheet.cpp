@@ -59,6 +59,34 @@
 	 We can use forward declaration by using a system called "function prototype", example: */
 	type identifier(parameters); /* Function prototype includes: return type, identifier, parameters, and a semicolon. The body of the function isn't defined here! */
 
+/* Preprocessors - Usually starts with the symbol  #  it basically replaces or changes things in the files. */
+	/* Preprocessor directive, it basically replaces the #include directive with the contents of the included file. */
+	#include <file>
+
+	/* A macro directive, basically before full compilation, it gets all the tokens in the code and replaces it with the value, kind like find & replace! Macros don't replace other preprocessors! */
+	#define token value
+
+	/* Conditional Compilation Preprocessor - Allows you to specify under what conditions something will or won’t compile. */
+	#ifdef token	/* Compile if the given token exists. */
+	#ifndef token	/* Compile if the given token doesn't exist. */
+	#if value		/* Compiles if the value is true. */
+	#endif			/* Ends a conditional compilation preprocessor. */
+
+	/* Example: */
+	#define PRINT_HELLO
+	#ifdef PRINT_HELLO
+		std::cout << "Hello!"; /* This will compile because PRINT_HELLO is defined! */
+	#endif
+	#ifdef PRINT_HI
+		std::cout << "Hi!"; /* This won't compile because PRINT_HI isn't defined! */
+	#endif
+	#ifndef PRINT_HI
+		std::cout << "Hi!\n"; /* This will compile because PRINT_HI isn't defined! */
+	#endif
+	#if 0
+		std:cout << "I don't run =("; /* Useful to comment out code that contains nested comments. */
+	#endif
+
 /* Namespaces
 	Any names not defined inside a function, class or a namespace is automatically placed inside the global namespace (aka global scope). */
 	using namespace name; /* Basically tells the compiler that if it comes across a identifier without a prefix, it should check to see if it's defined locally or in the defined namespace. */
@@ -75,12 +103,6 @@
 	- return a non-0 means that the program it encountered an error and could not complete as expected.
 	- Recommended to place the main function at bottom of which ever file it's located in. */
 	int main()
-
-/* Preprocessor directive, it indicates that we would like to use the contents of the given library. */
-	#include <value>
-
-/* A macro, basically before full compilation, it gets all the tokens in the code and replaces it with the value, kind like find & replace! */
-	#define token value
 
 /* Stands for "Character Output", it's used to basically print. */
 	std::cout << "Sample Text!";
