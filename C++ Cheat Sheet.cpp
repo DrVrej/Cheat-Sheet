@@ -10,8 +10,9 @@
 */
 /*********************** Compiler Notes ***********************/
 /*
-* -Wall = Produce warning messages about a number of things that are legal but unreliable. Suggested to always use this and treat every warning as an error to be fixed.
-* -Wextra = Enables some extra warning flags that are not enabled by -Wall. More Information: http://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
+* -Wall		= Produce warning messages about a number of things that are legal but unreliable. Suggested to always use this and treat every warning as an error to be fixed.
+* -Wextra	= Enables some extra warning flags that are not enabled by -Wall. More Information: http://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
+* -I		= Specifies an alternate include directory. Example:  -I/source/headers/  No spaces after the -I command!
 */
 /*
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -60,10 +61,13 @@
 	type identifier(parameters); /* Function prototype includes: return type, identifier, parameters, and a semicolon. The body of the function isn't defined here! */
 
 /* Preprocessors - Usually starts with the symbol  #  it basically replaces or changes things in the files. */
+	/* Directives are only valid from the point of definition to the end of the file in which they are defined. */
+	/* They have no scope, so putting it inside a function or outside doesn't make any difference. */
 	/* Preprocessor directive, it basically replaces the #include directive with the contents of the included file. */
-	#include <file>
+	#include <file>		/* <> tells the preprocessor this is a file included with the compiler, so it should look for the file in the system directories. */
+	#include "file.h"	/* "" tells the preprocessor this is a user-defined file, so it should look for the file in the directory containing the source code. */
 
-	/* A macro directive, basically before full compilation, it gets all the tokens in the code and replaces it with the value, kind like find & replace! Macros don't replace other preprocessors! */
+	/* A macro directive, before full compilation, it gets all the tokens in the code and replaces it with the value, kind like find & replace! Macros don't replace other preprocessors! */
 	#define token value
 
 	/* Conditional Compilation Preprocessor - Allows you to specify under what conditions something will or won’t compile. */
@@ -73,7 +77,7 @@
 	#endif			/* Ends a conditional compilation preprocessor. */
 
 	/* Example: */
-	#define PRINT_HELLO
+	#define PRINT_HELLO /* Empty macro. */
 	#ifdef PRINT_HELLO
 		std::cout << "Hello!"; /* This will compile because PRINT_HELLO is defined! */
 	#endif
@@ -90,6 +94,19 @@
 /* Namespaces
 	Any names not defined inside a function, class or a namespace is automatically placed inside the global namespace (aka global scope). */
 	using namespace name; /* Basically tells the compiler that if it comes across a identifier without a prefix, it should check to see if it's defined locally or in the defined namespace. */
+
+/* Header Files : Usually ends with  .h  or  .hpp  or sometimes it doesn't have an extension.
+	Header files allow us to put declarations in one location and then import them wherever we need them. This can save a lot of typing (forward declarations) in multi-file programs.
+	- It's better to have a separate header file for each .cpp file instead of having them all in one file (Better for compilation, especially in big files).
+	- To keep things organized, name the header file the same as its paired .cpp file.
+	- Highly recommended to #include the header file in its paired .cpp file, this is to avoid unexpected errors in the future!
+	- For the standard library, use the no extension version (without the .h) if it exists. It's much more updated then the .h version.
+	- Header files can include other header files, which will include all the definitions of the parent header file, including the parent's parent definitions!
+	Header Guards - Designed to ensure that the contents of a given header file aren't copied more than once into any single file, in order to prevent duplicate definitions. */
+	#ifndef FILE_NAME_H /* Create a unique name for it, best practice is to name it the same as the file. */
+	#define FILE_NAME_H
+			// The actual content of the header file goes here
+	#endif
 
 /* Scope Resolution Operator  ::
 	The identifier to the left of the :: symbol identifies the namespace that the name to the right of the :: symbol is contained within. */
