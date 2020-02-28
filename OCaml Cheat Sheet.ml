@@ -1,6 +1,10 @@
 ; (* Seperator in the interperter. *)
 ;; (* Mostly used when interpreting OCaml, tells it that iahs stopped. *)
 
+(* Gets definitions from the given package. *)
+open
+  open List;; (* opens the List package which allows you to use List definitions. *)
+
 (* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= *)
 char   -->   Example: 'a'
 
@@ -9,8 +13,48 @@ float   -->   Example: 2.14
 
 int   -->   Example: 3
 
+(* Items are seperated by ; and the types must be the same! *)
 list   -->   Example: [1;2;3]
-(* Items ar seperated by ; and the types must be the same! *)
+  ['a';'b';'c'] (* List of characters. *)
+  let l2 = [1;2;3];; (* Sets the name l2 to the given list. *)
+  4::5::6::[];;   -->   -: int list [4;5;6]
+  4::5::[6];;   -->   -: int list [4;5;6]
+  
+  let l1 = ['a';'b';'c'];;
+  
+  (* Head of the list, returns the first element of a list. *)
+  hd l1;;   -->   char = 'a'
+  
+  (* Tail of the list, returns the list without the first element. *)
+  tl l1;;   -->   char list = ['b';'c']
+  
+  (* Appends 2 lists together. Version 1. *)
+  let rec append2 l1 l2 =
+    if l1 = [] then l2 (* If l1 is an empty list then return l2. *)
+    else hd l1 :: append2 (tl l1) l2;; (* Take the first element of l1 and combine it with  *)
+    
+  (* Appends 2 lists together. Version 2. *)
+  let rec append2 l1 l2 =
+    match l1 with
+    | [] -> 12 (* If l1 is an empty list then return l2. *)
+    | _ -> hd l1 :: append2 (t1 l1) l2;;
+    append2 [1;2] [3;4]   -->   -: int list = [1;2;3;4]
+    
+  (* Check if an item is in a list. *)
+  let rec member x l =
+    if l = [] then false
+    else if x = hd l then true
+    else member x (tl l);;
+    member 1 [1;2;3];;   -->   -: bool = true
+    member 4 [1;2;3];;   -->   -: bool = false
+
+(* Arrays, can allow you to directly access the elements and index. *)
+let five_primes = [| 2; 3; 5; 7; 11 |];; (* An array example of 5 ints. *)
+  five_primes.(2);;   -->   -: int = 5 (* Returns the number at index 2. *)
+  five_primes.(2) <- 4   -->   -: unit = () (* Changes the value of index 2 to 4. *)
+  five_primes;;   -->   -: int array = [|2; 3; 4; 7; 11|]
+  
+
 
 (* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= *)
 (* Physical Equivelance *)
@@ -22,6 +66,13 @@ list   -->   Example: [1;2;3]
 =   -->   Example: [1] = [1]
   [1;2;3] = [1;2;3]   -->   true
   let l1 = [1;2]; l1 = [1;2]   -->   true
+ 
+(* List Construction. *)
+::
+ 
+(* Concatenation or appends lists together *)
+@
+[1;2]@[3;4];;   -->   -: int list = [1;2;3;4]
   
 (* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= *)
 (* Parameters don't have () or commas in between. *)
