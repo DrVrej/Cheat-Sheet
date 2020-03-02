@@ -13,7 +13,7 @@ float   -->   Example: 2.14
 
 int   -->   Example: 3
 
-(* Items are seperated by ; and the types must be the same! *)
+(* Items are separated by ; and the types must be the same! *)
 list   -->   Example: [1;2;3]
   ['a';'b';'c'] (* List of characters. *)
   let l2 = [1;2;3];; (* Sets the name l2 to the given list. *)
@@ -55,18 +55,51 @@ let five_primes = [| 2; 3; 5; 7; 11 |];; (* An array example of 5 ints. *)
   five_primes;;   -->   -: int array = [|2; 3; 4; 7; 11|]
   
 (* Tuples *)
-(1, 2);;   -->   -: int * int (1, 2)
-(1, "Hello");;   -->   -: int * string = (1, "Hello")
-(1, "Hello", 1.234);;   --> -: int * string * float = (1, "Hello", 1.234) (*Example of a 3-dimensional tuple. *)
-(10234, "Sa");;   -->   -: int * string = (10234, "Sa")
+	(1, 2);;   -->   -: int * int (1, 2)
+	(1, "Hello");;   -->   -: int * string = (1, "Hello")
+	(1, "Hello", 1.234);;   --> -: int * string * float = (1, "Hello", 1.234) (*Example of a 3-dimensional tuple. *)
+	(10234, "Sa");;   -->   -: int * string = (10234, "Sa")
 
-type 'a tree = Empty | Node of 'a * 'a tree * 'a tree;;
-  let myt1 = Empty;;
-  let myt2 = (1, Empty, Empty);;
-  let myt2 = (2, myt1, Empty);;
-  let myt3 = (3, myt2, Empty);;
-  let myt4 = (4, myt2, myt3);;
+	type 'a tree = Empty | Node of 'a * 'a tree * 'a tree;;
+		let myt1 = Empty;;
+		let myt2 = (1, Empty, Empty);;
+		let myt2 = (2, myt1, Empty);;
+		let myt3 = (3, myt2, Empty);;
+		let myt4 = (4, myt2, myt3);;
+	
+	("Hg", 80);;   -->   -: string * int = ("Hg", 80)
+	let mercury = ("Hg", 80);; (* Set this tuple to a name *)
 
+	(* Gets the first value of the tuple. *)
+	fst mercury;;   -->   -: string = "Hg"
+
+	(* Gets the last value of the tuple. *)
+	snd mercury;;   -->   -: int = 80
+
+(* Records, fields in a record has a name unlike tuples. The order doesn't matter unlike tuples. *)
+	type element = {name: string; atomic_number: int; atomic_weight float};;
+		let mercury = { atomic_number = 80; name = "Hg"; atomic_weight = 200.592};; (* Makes a record that we defined above. *)
+		mercury.name;;   -->   -: string = "Hg"
+		mercury.atomic_number;;   -->   -: int = 80
+	
+	(* mutable - This keyword allows you to make a certain field in a record changeable once set. *)
+	type sale_item = {name: string; mutable price: float};; (* Makes a new record with price being mutable, which means it can change! *)
+		let my_item = {name = "bike"; price = 699.99};;
+		my_item.price;;   -->   -: float = 699.99
+		my_item.price <- 599.99;;
+		my_item.price;;   -->   -: float = 599.99
+		
+(* References, kind like a pointer. *)
+	let x = ref 3;;   -->   val x : int ref = {contents = 3}
+	!x;;   -->   -: int = 3 (* Gets the value of x. *)
+	x := !x + 1;; (* Changes the value of x. *)
+	!x;;   -->   -: int = 4 (* Gets the value of x. *)
+	
+type weekday = Sun | Mon | Tue | Wed | Thu | Fri | Sat;;
+type yearday = YMD of int * int * int | YD of int * int;;
+	let a = YMD(2020, 3, 2);; (*Creates a type yearday defined above. *)
+	
+	
 
 
 (* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= *)
@@ -113,41 +146,41 @@ let triangle_area a b c =
 
 (* Function Recursion using   rec   This tells OCaml that it will be a recusive function. *)
 let rec fact x =
-  if x = 0 then 1
-  else x * fact(x - 1);;
-  fact 0;;   -->   -: int = 1
-  fact 1;;   -->   -: int = 1
-  fact 2;;   -->   -: int = 2
-  fact 3;;   -->   -: int = 6
-  fact 4;;   -->   -: int = 24
+	if x = 0 then 1
+	else x * fact(x - 1);;
+	fact 0;;   -->   -: int = 1
+	fact 1;;   -->   -: int = 1
+	fact 2;;   -->   -: int = 2
+	fact 3;;   -->   -: int = 6
+	fact 4;;   -->   -: int = 24
 
 (* Using match-with statement.    | = New case or seperator.    _ = Default.    *)
 let rec fact x =
-  match x with
-    | 0 -> 1
-    | _ -> x * fact(x - 1);;
-  fact 0;;   -->   -: int = 1
-  fact 1;;   -->   -: int = 1
-  fact 2;;   -->   -: int = 2
-  fact 3;;   -->   -: int = 6
-  fact 4;;   -->   -: int = 24
+	match x with
+		| 0 -> 1
+		| _ -> x * fact(x - 1);;
+	fact 0;;   -->   -: int = 1
+	fact 1;;   -->   -: int = 1
+	fact 2;;   -->   -: int = 2
+	fact 3;;   -->   -: int = 6
+	fact 4;;   -->   -: int = 24
 
 (* This will throw an error because it doesn't have a default ( _ ). *)
 let foo x =
-  match x with
-    | 0 -> "zero"
-    | 1 -> "one";;
+	match x with
+		| 0 -> "zero"
+		| 1 -> "one";;
 
 (* Recursive helper functions, *)
 let fib n =
-  let rec fib_helper f1 f2 i =
-    if i = n then f1
-    else fib_helper f2 (f1 + f2) (i + 1) in
-      fib_helper 0 1 0;;
-  fib 0;;   -->   -: int = 0
-  fib 1;;   -->   -: int = 1
-  fib 2;;   -->   -: int = 1
-  fib 3;;   -->   -: int = 2
+	let rec fib_helper f1 f2 i =
+		if i = n then f1
+		else fib_helper f2 (f1 + f2) (i + 1) in
+			fib_helper 0 1 0;;
+	fib 0;;   -->   -: int = 0
+	fib 1;;   -->   -: int = 1
+	fib 2;;   -->   -: int = 1
+	fib 3;;   -->   -: int = 2
 
 
 
