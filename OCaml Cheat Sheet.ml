@@ -54,6 +54,19 @@ let five_primes = [| 2; 3; 5; 7; 11 |];; (* An array example of 5 ints. *)
   five_primes.(2) <- 4   -->   -: unit = () (* Changes the value of index 2 to 4. *)
   five_primes;;   -->   -: int array = [|2; 3; 4; 7; 11|]
   
+(* Tuples *)
+(1, 2);;   -->   -: int * int (1, 2)
+(1, "Hello");;   -->   -: int * string = (1, "Hello")
+(1, "Hello", 1.234);;   --> -: int * string * float = (1, "Hello", 1.234) (*Example of a 3-dimensional tuple. *)
+(10234, "Sa");;   -->   -: int * string = (10234, "Sa")
+
+type 'a tree = Empty | Node of 'a * 'a tree * 'a tree;;
+  let myt1 = Empty;;
+  let myt2 = (1, Empty, Empty);;
+  let myt2 = (2, myt1, Empty);;
+  let myt3 = (3, myt2, Empty);;
+  let myt4 = (4, myt2, myt3);;
+
 
 
 (* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= *)
