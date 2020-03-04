@@ -1,5 +1,5 @@
-; (* Seperator in the interperter. *)
-;; (* Mostly used when interpreting OCaml, tells it that iahs stopped. *)
+; (* Separator in the interpreter. *)
+;; (* Mostly used when interpreting OCaml, tells it that it to stop. *)
 
 (* Gets definitions from the given package. *)
 open List;; (* opens the List package which allows you to use List definitions. *)
@@ -95,18 +95,44 @@ let five_primes = [| 2; 3; 5; 7; 11 |];; (* An array example of 5 ints. *)
 	x := !x + 1;; (* Changes the value of x. *)
 	!x;;   -->   -: int = 4 (* Gets the value of x. *)
 	
+(* | mean or *)
 type weekday = Sun | Mon | Tue | Wed | Thu | Fri | Sat;;
 type yearday = YMD of int * int * int | YD of int * int;;
 	let a = YMD(2020, 3, 2);; (*Creates a type yearday defined above. *)
 
 
+(* IEmpty represents type inttree with no data. It can be named anything. *)
+type inttree = IEmpty | IntNode of int * inttree * inttree;;
+	let it1 = IntNode(1, IEmpty, IEmpty);;
+	let it2 = IntNode(2, it1, IEmpty);;
+	let it3 = IntNode(3, it2, it1);;
+type 'a tree = Empty | Node of 'a * 'a tree * 'a tree;; (* Polymorphic version of the type above. *)
+	let t1 = Node('a', Empty, Empty);;
+	let mt2 = Node (1, Empty, Empty);;
+	let Node(v, l, r) = mt2 (* Set the values of mt2 to the give names (deconstruction) *)
+	l;;   -->   -: int tree = Empty
+	v;;   -->   -: int = 1
+let rec inorder t =
+	match t with
+	| Empty -> []
+	(* If it's a Node with 3 parameters (Names can be anything). Then do in order for the left side, then put the root & declare it as a list, then do the right side.*)
+	| Node(v, left, right) -> inorder left @ [v] @ inorder right;; (* @ = append *)
+let rec preorder t =
+	match t with
+	| Empty -> []
+	| Node(v, left, right) -> [v] @ preorder left @ preorder right;;
+let rec postorder t =
+	match t with
+	| Empty -> []
+	| Node(v, left, right) -> postorder left @ postorder right @ [v];;
+
 (* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= *)
-(* Physical Equivelance *)
+(* Physical Equivalence *)
 ==   -->   Example: 2 == 2
 	2 == 3   -->   false
 	let l1 = [1;2]; l1 == l1   -->   true
   
-(* Structural Equivelance *)
+(* Structural Equivalence *)
 =   -->   Example: [1] = [1]
 	[1;2;3] = [1;2;3]   -->   true
 	let l1 = [1;2]; l1 = [1;2]   -->   true
@@ -128,11 +154,11 @@ let   -->   (* Sets things to names. *)
 	let f3() = 3;; (* Put () if there is no parameters. *)
   
 (* Functions [4 styles / types] *)
-let average = fun x y -> (x +. y) /. 2.;; (* Type 1, allows polomorphism. *)
+let average = fun x y -> (x +. y) /. 2.;; (* Type 1, allows polymorphism. *)
 	average 2. 3.;;   -->   -: float = 2.5
-let average2 x y = (x +. y) /. 2.;; (* Type 2, allows polomorphism. *)
+let average2 x y = (x +. y) /. 2.;; (* Type 2, allows polymorphism. *)
 	average2 2. 3.;;   -->   -: float = 2.5
-let average3: float -> float -> float = fun x y -> (x +. y) /. 2.;; (* Type 3, useful for setting the type of the paramters specifically! *)
+let average3: float -> float -> float = fun x y -> (x +. y) /. 2.;; (* Type 3, useful for setting the type of the parameters specifically! *)
 	average3 2. 3.;;   -->   -: float = 2.5
 let average4 (x:float) (y:float) : float = (x +. y) /. 2.;; (* Type 4, more readable then Type 3. *)
 	average4 2. 3.;;   -->   -: float = 2.5
@@ -143,7 +169,7 @@ let triangle_area a b c =
     sqrt(s *. (s -. a) *. (s -. b) *. ( s -. c));;
   triangle_area 3. 4. 5.;;   -->   -: float = 6.
 
-(* Function Recursion using   rec   This tells OCaml that it will be a recusive function. *)
+(* Function Recursion using   rec   This tells OCaml that it will be a recursive function. *)
 let rec fact x =
 	if x = 0 then 1
 	else x * fact(x - 1);;
@@ -153,7 +179,7 @@ let rec fact x =
 	fact 3;;   -->   -: int = 6
 	fact 4;;   -->   -: int = 24
 
-(* Using match-with statement.    | = New case or seperator.    _ = Default.    *)
+(* Using match-with statement.    | = New case or separator.    _ = Default.    *)
 let rec fact x =
 	match x with
 		| 0 -> 1
