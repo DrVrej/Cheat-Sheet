@@ -2,14 +2,14 @@
 ;; (* Mostly used when interpreting OCaml, tells it that iahs stopped. *)
 
 (* Gets definitions from the given package. *)
-open
-  open List;; (* opens the List package which allows you to use List definitions. *)
+open List;; (* opens the List package which allows you to use List definitions. *)
+
 
 (* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= *)
 char   -->   Example: 'a'
 
 float   -->   Example: 2.14
-  3.0 +. 0.2;; (* Operators for floating numbers must have a dot after the operator. *)
+	3.0 +. 0.2;; (* Operators for floating numbers must have a dot after the operator. *)
 
 int   -->   Example: 3
 
@@ -54,7 +54,7 @@ let five_primes = [| 2; 3; 5; 7; 11 |];; (* An array example of 5 ints. *)
   five_primes.(2) <- 4   -->   -: unit = () (* Changes the value of index 2 to 4. *)
   five_primes;;   -->   -: int array = [|2; 3; 4; 7; 11|]
   
-(* Tuples *)
+(* Tuples, consists of values (0 or more), enclosed in parentheses and separated by commas. Can have different types for each element. *)
 	(1, 2);;   -->   -: int * int (1, 2)
 	(1, "Hello");;   -->   -: int * string = (1, "Hello")
 	(1, "Hello", 1.234);;   --> -: int * string * float = (1, "Hello", 1.234) (*Example of a 3-dimensional tuple. *)
@@ -73,7 +73,7 @@ let five_primes = [| 2; 3; 5; 7; 11 |];; (* An array example of 5 ints. *)
 	(* Gets the first value of the tuple. *)
 	fst mercury;;   -->   -: string = "Hg"
 
-	(* Gets the last value of the tuple. *)
+	(* Gets the second value of the tuple. *)
 	snd mercury;;   -->   -: int = 80
 
 (* Records, fields in a record has a name unlike tuples. The order doesn't matter unlike tuples. *)
@@ -98,20 +98,18 @@ let five_primes = [| 2; 3; 5; 7; 11 |];; (* An array example of 5 ints. *)
 type weekday = Sun | Mon | Tue | Wed | Thu | Fri | Sat;;
 type yearday = YMD of int * int * int | YD of int * int;;
 	let a = YMD(2020, 3, 2);; (*Creates a type yearday defined above. *)
-	
-	
 
 
 (* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= *)
 (* Physical Equivelance *)
 ==   -->   Example: 2 == 2
-  2 == 3   -->   false
-  let l1 = [1;2]; l1 == l1   -->   true
+	2 == 3   -->   false
+	let l1 = [1;2]; l1 == l1   -->   true
   
 (* Structural Equivelance *)
 =   -->   Example: [1] = [1]
-  [1;2;3] = [1;2;3]   -->   true
-  let l1 = [1;2]; l1 = [1;2]   -->   true
+	[1;2;3] = [1;2;3]   -->   true
+	let l1 = [1;2]; l1 = [1;2]   -->   true
  
 (* List Construction. *)
 ::
@@ -119,24 +117,25 @@ type yearday = YMD of int * int * int | YD of int * int;;
 (* Concatenation or appends lists together *)
 @
 [1;2]@[3;4];;   -->   -: int list = [1;2;3;4]
-  
+
+
 (* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= *)
 (* Parameters don't have () or commas in between. *)
 max 1 2;;   -->   -: int = 2
 
-let   -->   Sets things to names.
-  let hi = 3;; (* Sets the name hi to int 3. *)
-  let f3() = 3;; (* Put () if there is no parameters. *)
+let   -->   (* Sets things to names. *)
+	let hi = 3;; (* Sets the name hi to int 3. *)
+	let f3() = 3;; (* Put () if there is no parameters. *)
   
 (* Functions [4 styles / types] *)
 let average = fun x y -> (x +. y) /. 2.;; (* Type 1, allows polomorphism. *)
-  average 2. 3.;;   -->   -: float = 2.5
+	average 2. 3.;;   -->   -: float = 2.5
 let average2 x y = (x +. y) /. 2.;; (* Type 2, allows polomorphism. *)
-  average2 2. 3.;;   -->   -: float = 2.5
+	average2 2. 3.;;   -->   -: float = 2.5
 let average3: float -> float -> float = fun x y -> (x +. y) /. 2.;; (* Type 3, useful for setting the type of the paramters specifically! *)
-  average3 2. 3.;;   -->   -: float = 2.5
+	average3 2. 3.;;   -->   -: float = 2.5
 let average4 (x:float) (y:float) : float = (x +. y) /. 2.;; (* Type 4, more readable then Type 3. *)
-  average4 2. 3.;;   -->   -: float = 2.5
+	average4 2. 3.;;   -->   -: float = 2.5
 
 (* Local names using   let - in   system. *)
 let triangle_area a b c =
@@ -181,9 +180,3 @@ let fib n =
 	fib 1;;   -->   -: int = 1
 	fib 2;;   -->   -: int = 1
 	fib 3;;   -->   -: int = 2
-
-
-
-
-
-
