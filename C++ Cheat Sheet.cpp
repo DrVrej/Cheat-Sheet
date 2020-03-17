@@ -10,6 +10,7 @@
 */
 /*********************** Compiler Notes ***********************/
 /*
+* -w		= Disables all warning messages.
 * -Wall		= Produce warning messages about a number of things that are legal but unreliable. Suggested to always use this and treat every warning as an error to be fixed.
 * -Wextra	= Enables some extra warning flags that are not enabled by -Wall. More Information: http://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
 * -I		= Specifies an alternate include directory. Example:  -I/source/headers/  No spaces after the -I command!
