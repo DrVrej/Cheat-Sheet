@@ -1,6 +1,7 @@
 //////////////////////// C++ Cheat Sheet \\\\\\\\\\\\\\\\\\\\\\\\
 	///// Created by DrVrej | Since January 30, 2020! \\\\\
 
+
 /*
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -71,7 +72,7 @@
 	/* A macro directive, before full compilation, it gets all the tokens in the code and replaces it with the value, kind like find & replace! Macros don't replace other preprocessors! */
 	#define token value
 
-	/* Conditional Compilation Preprocessor - Allows you to specify under what conditions something will or won’t compile. */
+	/* Conditional Compilation Preprocessor - Allows you to specify under what conditions something will or wonï¿½t compile. */
 	#ifdef token	/* Compile if the given token exists. */
 	#ifndef token	/* Compile if the given token doesn't exist. */
 	#if value		/* Compiles if the value is true. */
