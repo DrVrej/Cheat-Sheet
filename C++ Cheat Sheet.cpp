@@ -42,21 +42,23 @@
 		- Allows you to specify under what conditions something will or won�t compile. */
 	#ifdef token	/* Compile if the given token exists. */
 	#ifndef token	/* Compile if the given token doesn't exist. */
-	#if value		/* Compiles if the value is true. */
+	#if value		/* Compile if the value is true. */
 	#endif			/* Ends a conditional compilation preprocessor. */
-		/* Example: */
-		#define PRINT_HELLO /* Empty macro. */
-		#ifdef PRINT_HELLO
-			std::cout << "Hello!"; /* This will compile because PRINT_HELLO is defined! */
+		/* Example #1: */
+		#define PRINT_TEST1 /* Empty macro. */
+		#ifdef PRINT_TEST1
+			std::cout << "I run!"; /* This will compile because PRINT_TEST1 is defined! */
 		#endif
-		#ifdef PRINT_HI
-			std::cout << "Hi!"; /* This won't compile because PRINT_HI isn't defined! */
+		/* Example #2: */
+		#ifdef PRINT_TEST2
+			std::cout << "I don't run!"; /* This won't compile because PRINT_TEST2 isn't defined! */
 		#endif
-		#ifndef PRINT_HI
-			std::cout << "Hi!\n"; /* This will compile because PRINT_HI isn't defined! */
+		#ifndef PRINT_TEST2
+			std::cout << "I run!"; /* This will compile because PRINT_TEST2 isn't defined! */
 		#endif
+		/* Example #3: */
 		#if 0
-			std:cout << "I don't run =("; /* Useful to comment out code that contains nested comments. */
+			std:cout << "I don't run!"; /* Useful to comment out code that contains nested comments. */
 		#endif
 
 /***** Header Files ********************************************************/
