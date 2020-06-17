@@ -1,6 +1,5 @@
 //////////////////////// C++ Cheat Sheet \\\\\\\\\\\\\\\\\\\\\\\\
 	///// Created by DrVrej | Since January 30, 2020! \\\\\
-
 /********************************************************************************************************************************************************************
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -19,25 +18,53 @@
 /********************************************************************************************************************************************************************
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
--- Concept ---------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Concepts ---------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ********************************************************************************************************************************************************************/
+/***** Data Types ********************************************************/
+/*	- Data types are used to tell the compiler how to interpret the contents of a memory.
+	- When a data type is assigned, the value is converted to a sequence of bits and will convert back to its normal form when it's being evaluted to produce a value.
+	- Many of the types defined in newer versions of C++ use a _t suffix, it means “type” and it’s usually applied to modern types.
+	
+	/* [Fundamental / Primitive Data Types]
+		- The basic built-in data types.
+	[Year]	[Type]					[Category]					[Examples] */
+			void					Void						n/a
+			////////////////////////////////////////////////////////////////////
+			bool					Integral (Boolean)			true, false		
+			////////////////////////////////////////////////////////////////////
+			char					Integral (Character)		'c', 'a', '?'
+			wchar_t
+	C++20	char8_t
+	C++11	char16_t
+	C++11	char32_t
+			////////////////////////////////////////////////////////////////////
+			short					Integral (Integer)			-1, 0, 1, 64
+			int
+			long
+	C++11	long long
+			////////////////////////////////////////////////////////////////////
+			float					Floating Point				3.14159, 1.2, 5.01
+			double
+			long double
+			////////////////////////////////////////////////////////////////////
+	C++11	std::nullptr_t			Null Pointer				nullptr
 /***** Preprocessor ********************************************************/
 /*	- Usually starts with the symbol  #  it basically replaces or changes things in the files.
 	- Directives are only valid from the point of definition to the end of the file in which they are defined.
 	- They have no scope, so putting it inside a function or outside doesn't make any difference.
-
+	
 	/* [Preprocessor Directive]
 		- Basically replaces the #include directive with the contents of the included file. */
 	#include <file>		/* <> tells the preprocessor this is a file included with the compiler, so it should look for the file in the system directories. */
 	#include "file.h"	/* "" tells the preprocessor this is a user-defined file, so it should look for the file in the directory containing the source code. */
-
+	
 	/* [Macro Directive]
 		- Before full compilation, it gets all the tokens in the code and replaces it with the value, kind like find & replace!
 		- Macros don't replace other preprocessors! */
 	#define token value
-
+	
 	/* [Conditional Compilation Preprocessor]
 		- Allows you to specify under what conditions something will or won�t compile. */
 	#ifdef token	/* Compile if the given token exists. */
@@ -80,13 +107,14 @@
 /***** Namespace ********************************************************/
 /*	- Any names not defined inside a function, class or a namespace is automatically placed inside the global namespace (aka global scope). */
 	/* [Using a Namespace]
-		- If the compiler comes across na identifier without a prefix, it will check if it's defined locally or in the defined namespace. */
+		- If the compiler comes across a identifier without a prefix, it will check if it's defined locally or in the defined namespace. */
 	using namespace name;
 
 /***** Variable Initialization ********************************************************/
 /*	- Uninitialized = A variable that hasn't been given a value (Usually through initialization or assignment). Using the value stored in an uninitialized variable will result in undefined behavior.
 	- Initialization = The object is given a known value at the point of definition.
-	- Assignment = The object is given a known value beyond the point of definition.*/
+	- Assignment = The object is given a known value beyond the point of definition.
+	- NOTE: Can't be defined type void! */
 	type identifier{expression};
 	
 	/* [Copy Initialization]
@@ -108,8 +136,13 @@
 	int var(3.7);	/* Output ---> 3 */
 	int var{3.7};	/* Output ---> Compiler Error! Narrowing isn't allowed! */
 
-/***** Function ********************************************************/
+/***** Functions ********************************************************/
 	type identifier(parameters){}
+	
+	/* [Deprecated: Void parameter]
+		- Comes from C, void indicates that the function takes no parameter.
+		- This is deprecated and recommended to just leave the parameter section empty instead. */
+	int function(void){}
 
 /***** Forward Declaration ********************************************************/
 /*	- Since the ordering of the functions in C++ matters, we use forward declaration to let the compiler know that an identifier exists before it is actually defined.
@@ -149,6 +182,15 @@
 /*
 - "\n" is slower then '\n' because it treats it as a string and has to run a loop.
 */
+
+/***** Merge Character Character:  \ ********************************************************/
+/*	- \ tells the compiler that the current line continues to the next line and it should compile them as one by merging them. */
+	if(1 \
+		  \
+		   \
+		    == 1){
+		std::cout << "MAGIC\n";
+	}
 
 /********************************************************************************************************************************************************************
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
