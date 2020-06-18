@@ -29,27 +29,32 @@
 	
 	/* [Fundamental / Primitive Data Types]
 		- The basic built-in data types.
-	[Year]	[Type]					[Category]					[Examples] */
-			void					Void						n/a
+	[Year]	[Type]					[Size]		[Range]				[Category]				[Examples] */
+			void					n/a			n/a					Void					n/a
 			////////////////////////////////////////////////////////////////////
-			bool					Integral (Boolean)			true, false		
+			bool					8-bits		0 or 1				Integral (Boolean)		true, false		
 			////////////////////////////////////////////////////////////////////
-			char					Integral (Character)		'c', 'a', '?'
-			wchar_t
-	C++20	char8_t
-	C++11	char16_t
-	C++11	char32_t
+			char					8-bits		-128 to 127			Integral (Character)	'c', 'a', '?'
+			unsigned char			8-bits		0 to 255
+			wchar_t					16-bits		0 to 65,535
+	C++20	char8_t					8-bits		-128 to 127
+	C++11	char16_t				16-bits		0 to 65,536
+	C++11	char32_t				32-bits		0 to 4,294,967,295
 			////////////////////////////////////////////////////////////////////
-			short					Integral (Integer)			-1, 0, 1, 64
-			int
-			long
-	C++11	long long
+			short					16-bits		-32,768 to 32,767	Integral (Integer)		-1, 0, 1, 64
+			unsigned short			16-bits		0 to 65,535
+			int						16-bits		-32,768 to 32,767
+			unsigned int			16-bits		0 to 65,535
+			long					32-bits		-2,147,483,648 to 2,147,483,647
+			unsigned long			32-bits		0 to 4,294,967,295
+	C++11	long long				64-bits		-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+	C++11	unsigned long long		64-bits		0 to 18,446,744,073,709,551,615
 			////////////////////////////////////////////////////////////////////
-			float					Floating Point				3.14159, 1.2, 5.01
-			double
-			long double
+			float					32-bits		(-/+)3.4 * 10^38	Floating Point			3.14159, 1.2, 5.01
+			double					64-bits		(-/+)1.7 * 10^308
+			long double				64-bits		(-/+)1.7 * 10^308
 			////////////////////////////////////////////////////////////////////
-	C++11	std::nullptr_t			Null Pointer				nullptr
+	C++11	std::nullptr_t											Null Pointer			nullptr
 /***** Preprocessor ********************************************************/
 /*	- Usually starts with the symbol  #  it basically replaces or changes things in the files.
 	- Directives are only valid from the point of definition to the end of the file in which they are defined.
@@ -168,7 +173,11 @@
 	- Recommended to place the main function at bottom of which ever file it's located in. */
 	int main()
 
-/***** Scope Resolution Operator  :: ********************************************************/
+/***** Keyword: "sizeof" ********************************************************/
+/*	- The sizeof operator is a unary operator that takes either a type or a variable and returns its size in bytes. */
+	sizeof(int)
+
+/***** Operator: "::" (Scope Resolution) ********************************************************/
 /*	- The identifier to the left of the :: symbol identifies the namespace that the name to the right of the :: symbol is contained within. */
 	namespace::name
 
@@ -183,7 +192,7 @@
 - "\n" is slower then '\n' because it treats it as a string and has to run a loop.
 */
 
-/***** Merge Character Character:  \ ********************************************************/
+/***** Merge Character Character: \ ********************************************************/
 /*	- \ tells the compiler that the current line continues to the next line and it should compile them as one by merging them. */
 	if(1 \
 		  \
