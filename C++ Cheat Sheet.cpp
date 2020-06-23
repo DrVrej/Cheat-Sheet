@@ -29,30 +29,34 @@
 	
 	/* [Fundamental / Primitive Data Types]
 		- The basic built-in data types.
-	[Year]	[Type]					[Size]		[Range]				[Category]				[Examples] */
+		- (-/+) --> The negative side always has 1 extra number! (Ex: -128 to 127 for 8-bits)
+		- Integer types can contain the keyword "int", but it's recommended not to put it! (Ex: long = long int  OR  short = short int)
+	- signed	= Default type. The number’s sign is preserved, so it an hold negative, positive, and 0.
+	- unsigned	=
+	[Year]	[Type]					[Size]		[Range]				[Category]				[Examples]*/
 			void					n/a			n/a					Void					n/a
 			////////////////////////////////////////////////////////////////////
 			bool					8-bits		0 or 1				Integral (Boolean)		true, false		
 			////////////////////////////////////////////////////////////////////
-			char					8-bits		-128 to 127			Integral (Character)	'c', 'a', '?'
-			unsigned char			8-bits		0 to 255
-			wchar_t					16-bits		0 to 65,535
-	C++20	char8_t					8-bits		-128 to 127
-	C++11	char16_t				16-bits		0 to 65,536
-	C++11	char32_t				32-bits		0 to 4,294,967,295
+			char					8-bits		-+ 127				Integral (Character)	'c', 'a', '?'
+			unsigned char			8-bits		+  255
+			wchar_t					16-bits		+  65,535
+	C++20	char8_t					8-bits		-+ 127
+	C++11	char16_t				16-bits		+  65,536
+	C++11	char32_t				32-bits		+  4,294,967,295
 			////////////////////////////////////////////////////////////////////
-			short					16-bits		-32,768 to 32,767	Integral (Integer)		-1, 0, 1, 64
-			unsigned short			16-bits		0 to 65,535
-			int						16-bits		-32,768 to 32,767
-			unsigned int			16-bits		0 to 65,535
-			long					32-bits		-2,147,483,648 to 2,147,483,647
-			unsigned long			32-bits		0 to 4,294,967,295
-	C++11	long long				64-bits		-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
-	C++11	unsigned long long		64-bits		0 to 18,446,744,073,709,551,615
+			short					16-bits		-+ 32,767			Integral (Integer)		-1, 0, 1, 64
+			unsigned short			16-bits		+  65,535
+			int						16-bits		-+ 32,767
+			unsigned int			16-bits		+  65,535
+			long					32-bits		-+ 2,147,483,647
+			unsigned long			32-bits		+  4,294,967,295
+	C++11	long long				64-bits		-+ 9,223,372,036,854,775,807
+	C++11	unsigned long long		64-bits		+  18,446,744,073,709,551,615
 			////////////////////////////////////////////////////////////////////
-			float					32-bits		(-/+)3.4 * 10^38	Floating Point			3.14159, 1.2, 5.01
-			double					64-bits		(-/+)1.7 * 10^308
-			long double				64-bits		(-/+)1.7 * 10^308
+			float					32-bits		-+ 3.4 * 10^38		Floating Point			3.14159, 1.2, 5.01
+			double					64-bits		-+ 1.7 * 10^308
+			long double				64-bits		-+ 1.7 * 10^308
 			////////////////////////////////////////////////////////////////////
 	C++11	std::nullptr_t											Null Pointer			nullptr
 /***** Preprocessor ********************************************************/
@@ -192,7 +196,7 @@
 - "\n" is slower then '\n' because it treats it as a string and has to run a loop.
 */
 
-/***** Merge Character Character: \ ********************************************************/
+/***** Merge Lines Character: \ ********************************************************/
 /*	- \ tells the compiler that the current line continues to the next line and it should compile them as one by merging them. */
 	if(1 \
 		  \
