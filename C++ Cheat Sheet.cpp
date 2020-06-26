@@ -31,8 +31,9 @@
 		- The basic built-in data types.
 		- (-/+) --> The negative side always has 1 extra number! (Ex: -128 to 127 for 8-bits)
 		- Integer types can contain the keyword "int", but it's recommended not to put it! (Ex: long = long int  OR  short = short int)
-	- signed	= Default type. The number’s sign is preserved, so it an hold negative, positive, and 0.
-	- unsigned	=
+	- signed = Default type. The number’s sign is preserved, so it an hold negative, positive, and 0.
+	- unsigned = Integers that can only hold non-negative whole numbers.
+		-> Wrap around: When the number is to small or to large, it wraps around. Example 8-bit integer (max 255): -2 --> 254 | -1 --> 255 | 256 --> 0 | 257 --> 1
 	[Year]	[Type]					[Size]		[Range]				[Category]				[Examples]*/
 			void					n/a			n/a					Void					n/a
 			////////////////////////////////////////////////////////////////////
