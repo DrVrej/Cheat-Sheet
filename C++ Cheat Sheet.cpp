@@ -33,7 +33,7 @@
 		- Integer types can contain the keyword "int", but it's recommended not to put it! (Ex: long = long int  OR  short = short int)
 	- signed = Default type. The number’s sign is preserved, so it an hold negative, positive, and 0.
 	- unsigned = Integers that can only hold non-negative whole numbers.
-		-> Wrap around: When the number is to small or to large, it wraps around. Example 8-bit integer (max 255): -2 --> 254 | -1 --> 255 | 256 --> 0 | 257 --> 1
+	  -> Wrap around: When the number is to small or to large, it wraps around. Example 8-bit integer (max 255): -2 --> 254 | -1 --> 255 | 256 --> 0 | 257 --> 1
 	[Year]	[Type]					[Size]		[Range]				[Category]				[Examples]*/
 			void					n/a			n/a					Void					n/a
 			////////////////////////////////////////////////////////////////////
@@ -54,12 +54,60 @@
 			unsigned long			32-bits		+  4,294,967,295
 	C++11	long long				64-bits		-+ 9,223,372,036,854,775,807
 	C++11	unsigned long long		64-bits		+  18,446,744,073,709,551,615
+			std::size_t				Defined to hold the largest object creatable on the system and it is a unsigned integer.
 			////////////////////////////////////////////////////////////////////
 			float					32-bits		-+ 3.4 * 10^38		Floating Point			3.14159, 1.2, 5.01
 			double					64-bits		-+ 1.7 * 10^308
 			long double				64-bits		-+ 1.7 * 10^308
 			////////////////////////////////////////////////////////////////////
 	C++11	std::nullptr_t											Null Pointer			nullptr
+	
+	/* [Fixed-Width Integer Data Types]
+		- These should be avoided for multiple reasons:
+		  1. They are optional and only exist if there are fundamental types matching their widths.
+		  2. Makes the code less portable and may not even compile on some systems.
+		  3. It may be slower because some CPUs are better at processing a 32-bit wide integer.
+		- Avoid the 8-bit fixed-width integer types. They are often treated like chars!
+	[Year]	[Type]					[Size]		[Range]				[Category]				[Examples]*/
+	C++11	int8_t					8-bits		-+ 127				Integer					-1, 0, 1, 64
+	C++11	uint8_t					8-bits		+  255
+	C++11	int16_t					16-bits		-+ 32,767
+	C++11	uint16_t				16-bits		+  65,535
+	C++11	int32_t					32-bits		-+ 2,147,483,647
+	C++11	uint32_t				32-bits		+  4,294,967,295
+	C++11	int64_t					64-bits		-+ 9,223,372,036,854,775,807
+	C++11	uint64_t				64-bits		+  18,446,744,073,709,551,615
+	
+	/* [Fast Integer Data Types]
+		- Provides the fastest integer type with a width of at least # bits (where # = 8, 16, 32, or 64).
+		  -> Example: std::int_fast32_t will give you the fastest signed integer type that’s at least 32 bits.
+		- Uses: If you need a variable guaranteed to be a particular size and want to favor performance, use this!
+		- Avoid the 8-bit fixed-width integer types. They are often treated like chars!
+	[Year]	[Type]					[Size]		[Range]				[Category]				[Examples]*/
+	C++11	int_fast8_t				8-bits		-+ 127				Integer					-1, 0, 1, 64
+	C++11	uint_fast8_t			8-bits		+  255
+	C++11	int_fast16_t			16-bits		-+ 32,767
+	C++11	uint_fast16_t			16-bits		+  65,535
+	C++11	int_fast32_t			32-bits		-+ 2,147,483,647
+	C++11	uint_fast32_t			32-bits		+  4,294,967,295
+	C++11	int_fast64_t			64-bits		-+ 9,223,372,036,854,775,807
+	C++11	uint_fast64_t			64-bits		+  18,446,744,073,709,551,615
+	
+	/* [Least Integer Data Types]
+		- Provides the smallest integer type with a width of at least # bits (where # = 8, 16, 32, or 64).
+		  -> Example: std::int_least32_t will give you the smallest signed integer type that’s at least 32 bits.
+		- Uses: If you need a variable guaranteed to be a particular size and want to favor memory conservation over performance, use this! This is used most often when allocating lots of variables.
+		- Avoid the 8-bit fixed-width integer types. They are often treated like chars!
+	[Year]	[Type]					[Size]		[Range]				[Category]				[Examples]*/
+	C++11	int_least8_t				8-bits		-+ 127				Integer					-1, 0, 1, 64
+	C++11	uint_least8_t			8-bits		+  255
+	C++11	int_least16_t			16-bits		-+ 32,767
+	C++11	uint_least16_t			16-bits		+  65,535
+	C++11	int_least32_t			32-bits		-+ 2,147,483,647
+	C++11	uint_least32_t			32-bits		+  4,294,967,295
+	C++11	int_least64_t			64-bits		-+ 9,223,372,036,854,775,807
+	C++11	uint_least64_t			64-bits		+  18,446,744,073,709,551,615
+	
 /***** Preprocessor ********************************************************/
 /*	- Usually starts with the symbol  #  it basically replaces or changes things in the files.
 	- Directives are only valid from the point of definition to the end of the file in which they are defined.
