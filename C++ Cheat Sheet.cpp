@@ -35,17 +35,6 @@
 	- unsigned = Integers that can only hold non-negative whole numbers.
 	  -> Wrap around: When the number is to small or to large, it wraps around. Example 8-bit integer (max 255): -2 --> 254 | -1 --> 255 | 256 --> 0 | 257 --> 1
 	[Year]	[Type]					[Size]		[Range]				[Category]				[Examples]*/
-			void					n/a			n/a					Void					n/a
-			////////////////////////////////////////////////////////////////////
-			bool					8-bits		0 or 1				Integral (Boolean)		true, false		
-			////////////////////////////////////////////////////////////////////
-			char					8-bits		-+ 127				Integral (Character)	'c', 'a', '?'
-			unsigned char			8-bits		+  255
-			wchar_t					16-bits		+  65,535
-	C++20	char8_t					8-bits		-+ 127
-	C++11	char16_t				16-bits		+  65,536
-	C++11	char32_t				32-bits		+  4,294,967,295
-			////////////////////////////////////////////////////////////////////
 			short					16-bits		-+ 32,767			Integral (Integer)		-1, 0, 1, 64
 			unsigned short			16-bits		+  65,535
 			int						16-bits		-+ 32,767
@@ -55,11 +44,24 @@
 	C++11	long long				64-bits		-+ 9,223,372,036,854,775,807
 	C++11	unsigned long long		64-bits		+  18,446,744,073,709,551,615
 			std::size_t				Defined to hold the largest object creatable on the system and it is a unsigned integer.
-			////////////////////////////////////////////////////////////////////
-			float					32-bits		-+ 3.4 * 10^38		Floating Point			3.14159, 1.2, 5.01
-			double					64-bits		-+ 1.7 * 10^308
-			long double				64-bits		-+ 1.7 * 10^308
-			////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			/* Floating point numbers are always signed! */
+			float					32-bits		-+ 3.4 * 10^38		Floating Point			-3.14159f, 1.0f, 3.2F, 5.01F
+			double					64-bits		-+ 1.7 * 10^308		Floating Point			-3.14159, 1.0, 3.2, 1.6e-19, 6.02e23
+			long double				64-bits		-+ 1.7 * 10^308		Floating Point			-3.14159l, 1.0l, 3.2L, 5.01L
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			/* - A char value is interpreted as an ASCII character. */
+			char					8-bits		-+ 127				Integral (Character)	'c', 'a', '?', '\n'
+			unsigned char			8-bits		+  255
+			wchar_t					16-bits		+  65,535
+	C++20	char8_t					8-bits		-+ 127
+	C++11	char16_t				16-bits		+  65,536
+	C++11	char32_t				32-bits		+  4,294,967,295
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			void					n/a			n/a					Void					n/a
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			bool					8-bits		0 or 1				Integral (Boolean)		0 (false) or 1 (true)	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	C++11	std::nullptr_t											Null Pointer			nullptr
 	
 	/* [Fixed-Width Integer Data Types]
@@ -107,6 +109,37 @@
 	C++11	uint_least32_t			32-bits		+  4,294,967,295
 	C++11	int_least64_t			64-bits		-+ 9,223,372,036,854,775,807
 	C++11	uint_least64_t			64-bits		+  18,446,744,073,709,551,615
+	
+/***** Literals ********************************************************/
+/*	- Just like objects have a type, all literals have a type. The type of a literal is assumed from the value and format of the literal itself.
+	/* [Default Literal Types]
+		- These are the types applied by default when the compiler sees certain data types.
+	[Name]				[Example]			[Default Type]*/
+	Integral			-3, 0, 8			int
+	Boolean				true, false			bool
+	Floating Point		-2.5, 0.0, 5.1		double
+	Character			'a', 'k', 'w'		char
+	C-Style String		"Hello, world!"		const char[14]
+	
+	/* [Literal Suffixes]
+		- Makes readability much better.
+		- Can be useful when giving a direct input to overloaded functions (Ex: To make the "long" version of the function run, you put "3L" instead of "3").
+		- Highly recommended to use a suffix for "float" data type!
+	[Data]	[Suffix]								[Meaning]				[Example]*/
+	int		u, U									unsigned int			5U, 8U
+	int		l, L									long					-1L, 10L
+	int		ul, uL, Ul, UL, lu, lU, Lu, LU			unsigned long			5UL, 9UL
+	int		ll, LL									long long				-5LL, 10LL
+	int		ull, uLL, Ull, ULL, llu, llU, LLu, LLU	unsigned long long		5ULL, 7ULL
+	double	f, F									float					-2.4f, 0.8f
+	double	l, L									long double				-9.245L, 6.2743L
+	
+	/* [Literal Prefixes]
+		- Used to define different base numbers.
+	[Name]			[Prefix]	[Range]		[Example]*/
+	Binary			0b			0 and 1		0b1111 --> 15 (decimal)
+	Octal			0			0 to 7		017 --> 15 (decimal)
+	Hexadecimal		0x			0 to F		0xF --> 15 (decimal)
 	
 /***** Preprocessor ********************************************************/
 /*	- Usually starts with the symbol  #  it basically replaces or changes things in the files.
@@ -242,8 +275,32 @@
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ********************************************************************************************************************************************************************/
 /*
-- "\n" is slower then '\n' because it treats it as a string and has to run a loop.
+	- Using the operator ' it can be used as a digit separator (Ex: 1000 = 1'000 = 1'0'0'0). This is used to make readability better.
 */
+
+/***** Escape sequences ********************************************************/
+/*	- These can be used as a character or in strings.
+	[Sequence]	[Name]				[Purpose]*/
+	'\a'		Alert				Makes an alert, usually accompanied by a beep sound.
+	'\b'		Backspace			Moves the cursor back one space.
+	'\r'		Carriage Return		Moves cursor to the beginning of the line.
+	'\n'		New Line			Moves cursor to next line, much faster than "\n" because the other one is treated as a string and has to run a loop to print!
+	'\f'		Form Feed			Moves the cursor to the next page. Used for printing, inserts a blank page.
+	'\t'		Horizontal tab		Prints a horizontal tab.
+	'\v'		Vertical tab		Prints a vertical tab.
+	'\''		Single quote		Prints a single quote.
+	'\"'		Double quote		Prints a double quote.
+	'\\'		Backslash			Prints a backslash.
+	'\?'		Question Mark		Prints a question mark. No longer relevant as ? can now be used unescaped in a regular character or string.
+	'\(#)'		Octal Number		Translates into char represented by octal
+	'\x(#)'		Hex Number			Translates into char represented by hex number
+
+/***** Unique Numbers ********************************************************/
+/*	- Numbers that unique and can result from certain arithmetics.
+	[Name]			[Meaning]*/
+	nan, NAN		Not a number (mathematically invalid)
+	inf				Positive infinity
+	-inf			Negative infinity
 
 /***** Merge Lines Character: \ ********************************************************/
 /*	- \ tells the compiler that the current line continues to the next line and it should compile them as one by merging them. */
