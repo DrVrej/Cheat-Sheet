@@ -141,7 +141,27 @@
 	Octal			0			0 to 7		017 --> 15 (decimal)
 	Hexadecimal		0x			0 to F		0xF --> 15 (decimal)
 	
-/***** Preprocessor ********************************************************/
+/***** Constants  ********************************************************/
+/*	- If something is initialized as a constant, it can't be changed!
+	- All constants must be initialized with a value.
+	
+	- Compile time Constants: Constants whose value can be determined during compile time. (Ex: Initializing a constant variable that holds Earth's gravity, 9.81).
+	- Run time Constants: Constants whose value can only be determined during runtime. (Ex: Initializing a constant variable that requires a user input).
+	
+	/* [const] 
+		- Inherited from C, it can be used for both compile & run time.
+		- Note: Use constexpr when the initializer is not known at compile time and must be determined at run time. */
+	const int name{1} // Initializes a constant variable of type int with the value 1.
+	int const name{1} // Same as above, not recommended to write it in this format!
+	
+	/* [constexpr] 
+		- Introduced in C++11, it can ONLY be used for compile time. Using this will enable the compiler to perform more optimizations. 
+		- Note: Use constexpr when the initializer is known at compile-time. */
+	constexpr int name{1} // Initializes a constant variable of type int with the value 1.
+	int constexpr name{1} // Same as above, not recommended to write it in this format!
+	
+	
+/***** Preprocessors ********************************************************/
 /*	- Usually starts with the symbol  #  it basically replaces or changes things in the files.
 	- Directives are only valid from the point of definition to the end of the file in which they are defined.
 	- They have no scope, so putting it inside a function or outside doesn't make any difference.
