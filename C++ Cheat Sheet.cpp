@@ -145,21 +145,112 @@
 /*	- If something is initialized as a constant, it can't be changed!
 	- All constants must be initialized with a value.
 	
-	- Compile time Constants: Constants whose value can be determined during compile time. (Ex: Initializing a constant variable that holds Earth's gravity, 9.81).
-	- Run time Constants: Constants whose value can only be determined during runtime. (Ex: Initializing a constant variable that requires a user input).
+	- Compile Time Constants: Constants whose value can be determined during compile time. (Ex: Initializing a constant variable that holds Earth's gravity, 9.81).
+	- Run Time Constants: Constants whose value can only be determined during runtime. (Ex: Initializing a constant variable that requires a user input).
 	
 	/* [const] 
 		- Inherited from C, it can be used for both compile & run time.
 		- Note: Use constexpr when the initializer is not known at compile time and must be determined at run time. */
-	const int name{1} // Initializes a constant variable of type int with the value 1.
-	int const name{1} // Same as above, not recommended to write it in this format!
+	const int name{1} /* Initializes a constant variable of type int with the value 1. */
+	int const name{1} /* Same as above, not recommended to write it in this format! */
 	
 	/* [constexpr] 
 		- Introduced in C++11, it can ONLY be used for compile time. Using this will enable the compiler to perform more optimizations. 
 		- Note: Use constexpr when the initializer is known at compile-time. */
-	constexpr int name{1} // Initializes a constant variable of type int with the value 1.
-	int constexpr name{1} // Same as above, not recommended to write it in this format!
+	constexpr int name{1} /* Initializes a constant variable of type int with the value 1. */
+	int constexpr name{1} /* Same as above, not recommended to write it in this format! */
 	
+/***** Operators ********************************************************/
+/*	- Precedence: Level 1 is the highest precedence level and level 17 is the lowest. Operators with a higher precedence level get evaluated first.
+	- Associativity: Determines which side of the operator gets evaluated first. (Ex: If 2 operators have the same precedence, it will determine which evaluates first).
+	[Precedence] [Associativity] [Operator]			[Description]				[Example]*/
+	1            N/A             ::					Namespace Scope				::name, class::member
+		/*	- If the left side is empty then it refers to the global scope (ex: ::var).
+			- The identifier to the left of the :: symbol identifies the namespace that the name to the right of the :: symbol is contained within. */
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	2            L->R            ()					Parentheses					(expression)
+	2            L->R            ()					Function Call				function(parameters)
+	2            L->R            ()   {}			Initialization				var(), var{}
+	2            L->R            ()   {}			Functional Cast				type(), type{}
+	2            L->R            []					Array subscript				pointer[expression]
+	2            L->R            .					Member Access 				object.member
+	2            L->R            ->					Member Access Pointer 		object_pointer->member
+	2            L->R            ++					Post-increment				value++
+	2            L->R            --					Post-decrement				value--
+	2            L->R            typeid				Run-time type Information	typeid(expression)
+	2            L->R            const_cast			Cast Away const				const_cast<type>(expression)
+	2            L->R            dynamic_cast		Run-time cast				dynamic_cast<type>(expression)
+	2            L->R            static_cast		Compile-time cast			static_cast<type>(expression)
+	2            L->R            reinterpret_cast	Cast to another type		reinterpret_cast<type>(expression)
+	2            L->R            noexcept			Compile-time Exception		noexcept(expression)
+	2            L->R            alignof			Get Type Alignment			alignof(Type)
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	3            R->L            +  -				Unary Plus / Minus			+expression, -expression
+		/* + operator is rarely used (it's redundant), but - operator widely used to multiply something be -1. */
+	3            R->L            ++					Pre-increment				++value
+	3            R->L            --					Pre-decrement				--value
+	3            R->L            !					Logical NOT					!expression
+	3            R->L            ~					Bitwise NOT					~expression
+	3            R->L            &					Memory Address				&value
+	3            R->L            *					Dereference					*expression
+	3            R->L            (type)				C-style Cast				(type)expression
+	3            R->L            new				Dynamic Memory Allocation	new type
+	3            R->L            new[]				Dynamic Array Allocation	new type[expression]
+	3            R->L            delete				Dynamic Memory Deletion		delete pointer
+	3            R->L            delete[]			Dynamic Array Deletion		delete[] pointer
+	3            R->L            sizeof				Size in Bytes				sizeof(type) or sizeof(expression)
+		/*	- The sizeof operator is a unary operator that takes either a type or a variable and returns its size in bytes. */
+	3            R->L            co_await			Await Asynchronous Call		co_await expression
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	4            L->R            .*					Member Object selector		object.*pointer_to_member
+	4            L->R            ->*				Member Pointer Selector		object_pointer->*pointer_to_member
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	5            L->R            *					Multiplication				expression * expression
+	5            L->R            /					Division					expression / expression
+	5            L->R            %					Modulus						expression % expression
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	6            L->R            +					Addition					expression + expression
+	6            L->R            -					Subtraction					expression - expression
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	7            L->R            <<					Bitwise Shift Left			expression << expression
+	7            L->R            >>					Bitwise Shift Right			expression >> expression
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	8            L->R            <=>				Three Way Comparison		expresstion <=> expression
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	9            L->R            <					Less than					expression < expression
+	9            L->R            <=					Less than or equals			expression <= expression
+	9            L->R            >					Greater than				expression > expression
+	9            L->R            >=					Greater than or equals		expression >= expression
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	10           L->R            ==					Equality					expression == expression
+	10           L->R            !=					Inequality					expression != expression
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	11           L->R            &					Bitwise AND					expression & expression
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	12           L->R            ^					Bitwise XOR					expression ^ expression
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	13           L->R            |					Bitwise OR					expression | expression
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	14           L->R            &&					Logical XOR					expression && expression
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	15           L->R            ||					Logical XOR					expression || expression
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	16           R->L            =					Assignment					var = expression
+	16           R->L            *=					Multiplication Assignment	var *= expression
+	16           R->L            /=					Division Assignment			var /= expression
+	16           R->L            %=					Modulus Assignment			var %= expression
+	16           R->L            +=					Addition Assignment			var += expression
+	16           R->L            -=					Subtraction Assignment		var -= expression
+	16           R->L            <<=				Bitwise Shift Left Assign	var <<= expression
+	16           R->L            >>=				Bitwise Shift Right Assign	var >>= expression
+	16           R->L            &=					Bitwise AND Assignment		var &= expression
+	16           R->L            |=					Bitwise OR Assignment		var |= expression
+	16           R->L            ^=					Bitwise XOR Assignment		var ^= expression
+	16           R->L            ?:					Ternary Conditional			expression ? expression : expression
+	16           R->L            throw				Throw						throw expression
+	16           R->L            co_yield			Yield						co_yield expression
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	17           L->R            ,					Comma						expression, expression
 	
 /***** Preprocessors ********************************************************/
 /*	- Usually starts with the symbol  #  it basically replaces or changes things in the files.
@@ -279,14 +370,6 @@
 	- Recommended to place the main function at bottom of which ever file it's located in. */
 	int main()
 
-/***** Keyword: "sizeof" ********************************************************/
-/*	- The sizeof operator is a unary operator that takes either a type or a variable and returns its size in bytes. */
-	sizeof(int)
-
-/***** Operator: "::" (Scope Resolution) ********************************************************/
-/*	- The identifier to the left of the :: symbol identifies the namespace that the name to the right of the :: symbol is contained within. */
-	namespace::name
-
 /********************************************************************************************************************************************************************
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -316,7 +399,7 @@
 	'\x(#)'		Hex Number			Translates into char represented by hex number
 
 /***** Unique Numbers ********************************************************/
-/*	- Numbers that unique and can result from certain arithmetics.
+/*	- Numbers that are unique and can result from certain arithmetics.
 	[Name]			[Meaning]*/
 	nan, NAN		Not a number (mathematically invalid)
 	inf				Positive infinity
