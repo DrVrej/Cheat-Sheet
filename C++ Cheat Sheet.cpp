@@ -1,5 +1,6 @@
 //////////////////////// C++ Cheat Sheet \\\\\\\\\\\\\\\\\\\\\\\\
 	///// Created by DrVrej | Since January 30, 2020! \\\\\
+	///// NOTE: It's highly recommended to open this file in an editor! Many of the tabs & spacings may not display properly on the web! \\\\\
 /********************************************************************************************************************************************************************
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -186,7 +187,7 @@
 	2            L->R            alignof			Get Type Alignment			alignof(Type)
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	3            R->L            +  -				Unary Plus / Minus			+expression, -expression
-		/* + operator is rarely used (it's redundant), but - operator widely used to multiply something be -1. */
+		/* + operator is rarely used (it's redundant), but - operator widely used to multiply something to be negative. */
 	3            R->L            ++					Pre-increment				++value
 	3            R->L            --					Pre-decrement				--value
 	3            R->L            !					Logical NOT					!expression
@@ -231,9 +232,9 @@
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	13           L->R            |					Bitwise OR					expression | expression
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	14           L->R            &&					Logical XOR					expression && expression
+	14           L->R            &&					Logical AND					expression && expression
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	15           L->R            ||					Logical XOR					expression || expression
+	15           L->R            ||					Logical OR					expression || expression
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	16           R->L            =					Assignment					var = expression
 	16           R->L            *=					Multiplication Assignment	var *= expression
