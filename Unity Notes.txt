@@ -1,0 +1,12 @@
+Scenes = Basically maps
+	- Only one can be active at a time, but you can make a transition between scenes using code
+   
+Scripts:
+	- Script must be in the hierarchy or attached to object for it to run (Leaving it in the asset folder will do nothing as far as I know?)
+	- public variables will appear in the inspector
+	- private variables will NOT appear in the inspector
+		- [SerializeField] = Private variables that can be viewed/edited inside the object's inspector
+   
+	- Object = The base class for all objects in Unity. It offers instantiation and destruction functions, but not much more.
+	- GameObject = Subclass of Object, its the base class for all entities in a scene. It has a Transform component by default and can have other components attached.
+		- gameObject = Can be accessed from component objects, for example "transform.gameObject", this is useful if you only have the "transform" object and want to access the object that holds it.
