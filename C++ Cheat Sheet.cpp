@@ -82,7 +82,7 @@ Windows ONLY:
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			void					n/a			n/a					Void					n/a
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			bool					8-bits		0 or 1				Integral (Boolean)		0 (false) or 1 (true)	
+			bool					8-bits		0 or 1				Integral (Boolean)		0 (false) or 1 (true)
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	C++11	std::nullptr_t											Null Pointer			nullptr
 	
@@ -177,10 +177,18 @@ Windows ONLY:
 	int const name{1} /* Same as above, not recommended to write it in this format! */
 	
 	/* [constexpr] 
-		- Introduced in C++11, it can ONLY be used for compile time. Using this will enable the compiler to perform more optimizations. 
+		- Introduced in C++11, it can ONLY be used for compile time.
+		- This is mostly used for optimization purposes.
+		- Think of this like a #define macro, getting rid of the need to evaluate something during run time!
 		- Note: Use constexpr when the initializer is known at compile-time. */
 	constexpr int name{1} /* Initializes a constant variable of type int with the value 1. */
 	int constexpr name{1} /* Same as above, not recommended to write it in this format! */
+		/* Example: */
+		// Every time func1 is called, it will evaluate a * b, this happens during run-time, causing unneeded performance loss!
+		const int func1(int a, int b){ return a * b; }
+		// Unlike func1, the compiler will look at all the func2 calls and if the passed paramters don't need user input, it will evaluate them during compile time!
+			// All the function calls will be replaced with the evaluated value, kind of like a macro!
+		constexpr int func2(int a, int b){ return a * b; }
 	
 /***** Operators ********************************************************/
 /*	- Precedence: Level 1 is the highest precedence level and level 17 is the lowest. Operators with a higher precedence level get evaluated first.
@@ -302,7 +310,7 @@ Windows ONLY:
 		#endif
 		/* Example #2: */
 		#ifdef PRINT_TEST2
-			std::cout << "I don't run!"; /* This won't compile because PRINT_TEST2 isn't defined! */
+			std::cout << "I don't run!"; /* This will NOT compile because PRINT_TEST2 isn't defined! */
 		#endif
 		#ifndef PRINT_TEST2
 			std::cout << "I run!"; /* This will compile because PRINT_TEST2 isn't defined! */
