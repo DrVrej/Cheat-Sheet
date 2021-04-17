@@ -1,3 +1,5 @@
+-- Unity Game Engine Notes --
+
 Scenes = Basically maps
 	- Only one can be active at a time, but you can make a transition between scenes using code
    
