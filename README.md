@@ -14,4 +14,8 @@ Bunch of useful cheat sheets and notes for different programming languages and c
 - http://learngitbranching.js.org -- Interactive way to learn Git
 - http://visualgo.net -- Visualise data structure and algorithms
 
+# GitHub Pages
+- Jekyll: https://jekyllrb.com/docs/step-by-step/01-setup/
+- Liquid (Used by Jekyll): https://shopify.github.io/liquid/basics/introduction/
+
 If there is any suggestions or you notice any mistakes, feel free to post an issue or commit a pull request!
