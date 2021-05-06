@@ -13,6 +13,7 @@ Bunch of useful cheat sheets and notes for different programming languages and c
 - http://linuxsurvival.com -- Interactive online Linux tutorial
 - http://learngitbranching.js.org -- Interactive way to learn Git
 - http://visualgo.net -- Visualise data structure and algorithms
+- https://learnxinyminutes.com/ -- Quick overview of a wide range of languages
 
 # GitHub Pages
 - Jekyll: https://jekyllrb.com/docs/step-by-step/01-setup/
