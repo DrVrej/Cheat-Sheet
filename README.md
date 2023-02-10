@@ -18,6 +18,7 @@ Bunch of useful cheat sheets and notes for different programming languages and c
 # Privacy Tools
 - https://urlscan.io/ -- Scan URLs for potential danger
 - https://haveibeenpwned.com/ -- Search if any of your accounts have been compromised
+- https://justdeleteme.xyz/ -- Delete accounts
 
 # GitHub Pages
 - Jekyll: https://jekyllrb.com/docs/step-by-step/01-setup/
