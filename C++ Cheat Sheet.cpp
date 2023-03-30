@@ -14,26 +14,26 @@
 -----------------
 Debugging / Error-Checking:
 -----------------
-* -g		= generates debug information to be used by GDB debugger. NOTE: The debugging process may have issues running if this option isn't set!
-* -w		= Disables all warning messages.
-* -Wall		= Produce warning messages about a number of things that are legal but unreliable. Suggested to always use this and treat every warning as an error to be fixed.
-* -Wextra	= Enables extra warning flags that are not enabled by -Wall. More Information: http://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
-* -Werror	= Marks all warnings as errors.
-* -Wfatal-errors = Causes the compiler to abort on the first error it encounters.
+* -g				= Generates debug information to be used by GDB debugger. NOTE: The debugging process may have issues running if this option isn't set!
+* -w				= Disables all warning messages.
+* -Wall				= Produce warning messages about a number of things that are legal but unreliable. Suggested to always use this and treat every warning as an error to be fixed.
+* -Wextra			= Enables extra warning flags that are not enabled by -Wall. More Information: http://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
+* -Werror			= Marks all warnings as errors.
+* -Wfatal-errors	= Causes the compiler to abort on the first error it encounters.
 -----------------
 Linking:
 -----------------
-* -static	= Includes all the needed dll files into the exe, making it a semi-independent application
-* -I		= Adds an include directroy of header files.
-*****EX: 		-I/source/headers
-* -L		= Looks in the given directroy for library files, useful for static libraries
-* -l		= Links a library file, useful for static linking. NOTE: Remove the "lib" prefix and any file type suffixes!
-*****EX: 		file named "libhello.a" --> -lhello
+* -static			= Includes all the needed dll files into the exe, making it a semi-independent application
+* -I				= Adds an include directory of header files.
+*					=== EX: -I/source/headers
+* -L				= Looks in the given directory for library files, useful for static libraries
+* -l				= Links a library file, useful for static linking. NOTE: Remove the "lib" prefix and any file type suffixes!
+*					=== EX: file named "libhello.a" --> -lhello
 -----------------
 Windows ONLY:
 -----------------
-* -mconsole = Enables the terminal to show up, used for terminal-based applications.
-* -mwindows	= Disables the terminal from showing up, used for GUI applications.
+* -mconsole			= Enables the terminal to show up, used for terminal-based applications.
+* -mwindows			= Disables the terminal from showing up, used for GUI applications.
 */
 /********************************************************************************************************************************************************************
  ######   #######  ##    ##  ######  ######## ########  ########  ######
@@ -123,7 +123,7 @@ Windows ONLY:
 		- Uses: If you need a variable guaranteed to be a particular size and want to favor memory conservation over performance, use this! This is used most often when allocating lots of variables.
 		- Avoid the 8-bit fixed-width integer types. They are often treated like chars!
 	[Year]	[Type]					[Size]		[Range]				[Category]				[Examples]*/
-	C++11	int_least8_t				8-bits		-+ 127				Integer					-1, 0, 1, 64
+	C++11	int_least8_t			8-bits		-+ 127				Integer					-1, 0, 1, 64
 	C++11	uint_least8_t			8-bits		+  255
 	C++11	int_least16_t			16-bits		-+ 32,767
 	C++11	uint_least16_t			16-bits		+  65,535
@@ -488,20 +488,20 @@ Windows ONLY:
 	//std::cin.get(); /* get one more char from the user. */
 
 /***** Common Terminal Colors ********************************************************/
-#define COLOR_DEFAULT "\033[0m" /* Default */
-#define COLOR_BLACK "\033[30m" /* Black */
-#define COLOR_RED "\033[31m" /* Red */
-#define COLOR_GREEN "\033[32m" /* Green */
-#define COLOR_YELLOW "\033[33m" /* Yellow */
-#define COLOR_BLUE "\033[34m" /* Blue */
-#define COLOR_MAGENTA "\033[35m" /* Magenta */
-#define COLOR_CYAN "\033[36m" /* Cyan */
-#define COLOR_WHITE "\033[37m" /* White */
-#define COLOR_BOLDBLACK "\033[1m\033[30m" /* Bold Black */
-#define COLOR_BOLDRED "\033[1m\033[31m" /* Bold Red */
-#define COLOR_BOLDGREEN "\033[1m\033[32m" /* Bold Green */
-#define COLOR_BOLDYELLOW "\033[1m\033[33m" /* Bold Yellow */
-#define COLOR_BOLDBLUE "\033[1m\033[34m" /* Bold Blue */
-#define COLOR_BOLDMAGENTA "\033[1m\033[35m" /* Bold Magenta */
-#define COLOR_BOLDCYAN "\033[1m\033[36m" /* Bold Cyan */
-#define COLOR_BOLDWHITE "\033[1m\033[37m" /* Bold White */
+#define COLOR_DEFAULT		"\033[0m"
+#define COLOR_BLACK			"\033[30m"
+#define COLOR_RED			"\033[31m"
+#define COLOR_GREEN			"\033[32m"
+#define COLOR_YELLOW		"\033[33m"
+#define COLOR_BLUE			"\033[34m"
+#define COLOR_MAGENTA		"\033[35m"
+#define COLOR_CYAN			"\033[36m"
+#define COLOR_WHITE			"\033[37m"
+#define COLOR_BLACK_BOLD	"\033[1m\033[30m"
+#define COLOR_RED_BOLD		"\033[1m\033[31m"
+#define COLOR_GREEN_BOLD	"\033[1m\033[32m"
+#define COLOR_YELLOW_BOLD	"\033[1m\033[33m"
+#define COLOR_BLUE_BOLD		"\033[1m\033[34m"
+#define COLOR_MAGENTA_BOLD	"\033[1m\033[35m"
+#define COLOR_CYAN_BOLD		"\033[1m\033[36m"
+#define COLOR_WHITE_BOLD	"\033[1m\033[37m"
