@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This repository is now deprecated, all the information has moved to [drvrej.com/library](https://drvrej.com/library/)
+
 # Cheat Sheets & Notes!
 Bunch of useful cheat sheets and notes for different programming languages and concepts!
 
